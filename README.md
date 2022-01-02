@@ -20,4 +20,4 @@ If you encounter any issue during your playthrough, either with the Modpack itse
 ***
 
 ## License
-[**Read Here**](https://github.com/Librv/Compressor/blob/main/LICENSE.md)
+[**Read Here**](https://github.com/Librv/Compressor/blob/main/LICENSE)
