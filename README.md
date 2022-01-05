@@ -6,7 +6,9 @@ Runs on Fabric, needs Fabric API
 
 ## Dev Versions
 
-Here on [**GitHub**](https://github.com/Librv/Compressor/releases) you will find version in active development, meaning that they're unstable compared to the released versions on [**Curseforge**](https://www.curseforge.com/minecraft/mc-mods/compressor)
+Here on [**GitHub**](https://github.com/Librv/Compressor/releases) you can find versions in active development, meaning that they're unstable compared to the released versions on [**Curseforge**](https://www.curseforge.com/minecraft/mc-mods/compressor)
+
+These are marked by the ```dev``` suffix after the version number -> e.g. ```0.1.1 dev1```
 
 ## Support us!
 Want to support us? Make sure to use **code ```Libra```** for **25% OFF** your order when renting a server over at [**BisectHosting**](https://www.bisecthosting.com/Libra)
