@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WWW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "tag": "c:double_compressed_netherrack"
+    }
+  },
+  "result": {
+    "item": "compressor:triple_compressed_netherrack",
+    "count": 1
+  }
+}

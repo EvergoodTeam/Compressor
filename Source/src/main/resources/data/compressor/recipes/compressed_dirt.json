@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WWW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "result": {
+    "item": "compressor:compressed_dirt",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:sextuple_compressed_stone"
+    }
+  ],
+  "result": {
+    "item": "compressor:quintuple_compressed_stone",
+    "count": 9
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WWW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "tag": "c:sextuple_compressed_stone"
+    }
+  },
+  "result": {
+    "item": "compressor:septuple_compressed_stone",
+    "count": 1
+  }
+}

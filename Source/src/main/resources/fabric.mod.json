@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "compressor",
+  "version": "${version}",
+
+  "name": "Compressor",
+  "description": "Provides up to 8x compressed blocks for Stone, Cobblestone, Gravel, Sand, Dirt and Netherrack",
+  "authors": [
+    "Libra"
+  ],
+  "contact": {
+    "issues": "https://github.com/Librv/Compressor/issues",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/compressor",
+    "sources": "https://github.com/Librv/Compressor"
+  },
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "evergoodteam.Compressor"
+    ],
+    "client": [
+      "evergoodteam.CompressorClient"
+    ]
+  },
+  "mixins": [
+    "compressor.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

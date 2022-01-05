@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:quintuple_compressed_sand"
+    }
+  ],
+  "result": {
+    "item": "compressor:quadruple_compressed_sand",
+    "count": 9
+  }
+}

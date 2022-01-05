@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WWW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "compressor:compressed_stone",
+    "count": 1
+  }
+}
