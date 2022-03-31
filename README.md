@@ -2,7 +2,7 @@
 
 1.18.1 Minecraft mod that adds up to 8x compressed versions of Stone, Cobblestone, Gravel, Sand, Dirt, Netherrack, Basalt, Deepslate, Cobbled Deepslate, Blackstone and End Stone
 
-Runs on Fabric, needs Fabric API
+Currently only available for the **Fabric ModLoader**, requires the [**Fabric API**](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 
 ## Dev Versions
 
