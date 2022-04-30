@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "compressor",
+  "version": "${version}",
+
+  "name": "Compressor",
+  "description": "Provides up to 8x compressed blocks for Stone, Cobblestone, Gravel, Sand, Dirt, Netherrack, Basalt, Deepslate, Cobbled Deepslate, Blackstone and End Stone",
+  "authors": [
+    "Libra"
+  ],
+  "contact": {
+    "issues": "https://github.com/Librv/Compressor/issues",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/compressor",
+    "sources": "https://github.com/Librv/Compressor"
+  },
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "evergoodteam.Compressor"
+    ],
+    "client": [
+      "evergoodteam.CompressorClient"
+    ],
+    "modmenu": [
+      "evergoodteam.CompressorModMenu"
+    ]
+  },
+  "mixins": [
+    "compressor.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17",
+    "chassis": "1.0.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "Discord": "https://discord.gg/k2P68Y8",
+        "BisectHosting": "https://www.bisecthosting.com/Libra"
+      }
+    }
+  }
+}
