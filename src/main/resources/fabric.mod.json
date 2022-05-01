@@ -14,7 +14,7 @@
     "sources": "https://github.com/Librv/Compressor"
   },
 
-  "license": "GPL-2.0",
+  "license": "LGPL-2.1",
   "icon": "icon.png",
 
   "environment": "*",

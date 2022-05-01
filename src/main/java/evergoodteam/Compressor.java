@@ -1,8 +1,8 @@
 package evergoodteam;
 
+import evergoodteam.chassis.configs.ConfigHandler;
 import evergoodteam.chassis.objects.blocks.BlockBase;
 import evergoodteam.chassis.objects.groups.ItemGroupBase;
-import evergoodteam.chassis.objects.resourcepacks.ResourcePackBase;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -16,11 +16,9 @@ import java.util.List;
 import static evergoodteam.chassis.objects.assets.LootJson.createBlockBreakLootJson;
 import static evergoodteam.chassis.objects.assets.RecipeJson.create3x3RecipeJson;
 import static evergoodteam.chassis.objects.assets.RecipeJson.createShapelessRecipeJson;
-import static evergoodteam.chassis.objects.resourcepacks.ResourcePackBase.getResourcePack;
 import static evergoodteam.chassis.util.handlers.InjectionHandler.*;
 import static evergoodteam.chassis.util.handlers.RegistryHandler.registerBlockAndItem;
-import static evergoodteam.util.CompressorReference.LOGGER;
-import static evergoodteam.util.CompressorReference.MODID;
+import static evergoodteam.util.CompressorReference.*;
 
 public class Compressor implements ModInitializer {
 
@@ -136,13 +134,15 @@ public class Compressor implements ModInitializer {
 
         LOGGER.info("Booting up Compressor");
 
+        COMPRESSOR_CONFIGS.options.put("hideResourcePack", true);
+        COMPRESSOR_CONFIGS.addProperties();
+
         init();
+
+        if (ConfigHandler.getBooleanOption(COMPRESSOR_CONFIGS, "hideResourcePack", true)) COMPRESSOR_RESOURCES.hide();
     }
 
     public void init() {
-
-
-        ResourcePackBase compressorRP = getResourcePack(MODID, MODID);
 
 
         addColumnType(new String[]{"basalt", "compressed_deepslate", "blackstone"});
@@ -167,8 +167,8 @@ public class Compressor implements ModInitializer {
                     registerBlockAndItem("compressor", path, BLOCKS.get(blockIndex), COMPRESSOR_GROUP, "item.compressor.octuple_compressed_" + materials[i] + ".tooltip");
                 }
 
-                compressorRP.createBlockstate(path);
-                compressorRP.createGlobalTag(path);
+                COMPRESSOR_RESOURCES.createBlockstate(path);
+                COMPRESSOR_RESOURCES.createGlobalTag(path);
 
                 toolTags.add(path);
                 blockIndex++;
@@ -177,7 +177,7 @@ public class Compressor implements ModInitializer {
             }
         }
 
-        compressorRP.createMiningLevelTag("stone", toolTags.toArray(new String[0]))
+        COMPRESSOR_RESOURCES.createMiningLevelTag("stone", toolTags.toArray(new String[0]))
                 .createRequiredToolTag("pickaxe", toolTags.toArray(new String[0]));
     }
 
