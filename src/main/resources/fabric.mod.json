@@ -23,14 +23,12 @@
       "evergoodteam.Compressor"
     ],
     "client": [
-      "evergoodteam.CompressorClient"
     ],
     "modmenu": [
       "evergoodteam.CompressorModMenu"
     ]
   },
   "mixins": [
-    "compressor.mixins.json"
   ],
 
   "depends": {

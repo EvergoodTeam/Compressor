@@ -1,10 +1,8 @@
 package evergoodteam;
 
-import evergoodteam.chassis.configs.ConfigHandler;
 import evergoodteam.chassis.objects.blocks.BlockBase;
 import evergoodteam.chassis.objects.groups.ItemGroupBase;
 import evergoodteam.chassis.objects.resourcepacks.ResourcePackBase;
-import lombok.extern.log4j.Log4j2;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -19,11 +17,11 @@ import static evergoodteam.chassis.objects.assets.LootJson.createBlockBreakLootJ
 import static evergoodteam.chassis.objects.assets.RecipeJson.create3x3RecipeJson;
 import static evergoodteam.chassis.objects.assets.RecipeJson.createShapelessRecipeJson;
 import static evergoodteam.chassis.objects.resourcepacks.ResourcePackBase.getResourcePack;
-import static evergoodteam.chassis.util.handlers.ListHandler.*;
-import static evergoodteam.chassis.util.handlers.RegistryHandler.*;
-import static evergoodteam.util.ReferenceCompressor.*;
+import static evergoodteam.chassis.util.handlers.InjectionHandler.*;
+import static evergoodteam.chassis.util.handlers.RegistryHandler.registerBlockAndItem;
+import static evergoodteam.util.CompressorReference.LOGGER;
+import static evergoodteam.util.CompressorReference.MODID;
 
-@Log4j2
 public class Compressor implements ModInitializer {
 
     /**
@@ -131,12 +129,12 @@ public class Compressor implements ModInitializer {
     final Block SEPTUPLE_COMPRESSED_END_STONE = new BlockBase(BLOCKS, Material.STONE, 57.25f, 30.7f, BlockSoundGroup.STONE);
     final Block OCTUPLE_COMPRESSED_END_STONE = new BlockBase(BLOCKS, Material.STONE, 74.0f, 36.6f, BlockSoundGroup.STONE);
 
-    final ItemGroup COMPRESSOR_GROUP = new ItemGroupBase(MODID, "itemgroup", SEPTUPLE_COMPRESSED_COBBLESTONE).group;
+    final ItemGroup COMPRESSOR_GROUP = new ItemGroupBase(MODID, "itemgroup", OCTUPLE_COMPRESSED_COBBLESTONE).group;
 
     @Override
     public void onInitialize() {
 
-        LOGGER.info("Booting up");
+        LOGGER.info("Booting up Compressor");
 
         init();
     }
@@ -149,7 +147,6 @@ public class Compressor implements ModInitializer {
 
         addColumnType(new String[]{"basalt", "compressed_deepslate", "blackstone"});
         addAssetInjection(MODID);
-
 
         String[] materials = {"stone", "cobblestone", "gravel", "sand", "dirt", "netherrack", "basalt", "deepslate", "cobbled_deepslate", "blackstone", "end_stone"};
         String[] rates = {"", "double_", "triple_", "quadruple_", "quintuple_", "sextuple_", "septuple_", "octuple_"};
@@ -164,19 +161,14 @@ public class Compressor implements ModInitializer {
 
                 String path = rates[j] + "compressed_" + materials[i];
 
-                if(!"octuple_".equals(rates[j])){
+                if (!"octuple_".equals(rates[j])) {
                     registerBlockAndItem("compressor", path, BLOCKS.get(blockIndex), COMPRESSOR_GROUP);
-                }
-                else{
+                } else {
                     registerBlockAndItem("compressor", path, BLOCKS.get(blockIndex), COMPRESSOR_GROUP, "item.compressor.octuple_compressed_" + materials[i] + ".tooltip");
                 }
 
-                if (!ConfigHandler.getBooleanOption(COMPRESSOR_CONFIGS, "blockstateLock", false)) {
-                    compressorRP.createBlockstate(path);
-                }
-                if (!ConfigHandler.getBooleanOption(COMPRESSOR_CONFIGS, "globalTagLock", false)) {
-                    compressorRP.createGlobalTag(path);
-                }
+                compressorRP.createBlockstate(path);
+                compressorRP.createGlobalTag(path);
 
                 toolTags.add(path);
                 blockIndex++;
@@ -189,13 +181,13 @@ public class Compressor implements ModInitializer {
                 .createRequiredToolTag("pickaxe", toolTags.toArray(new String[0]));
     }
 
-    public void recipeLootInit(String path, String[] materials, String[] rates, int i, int j){
+    public void recipeLootInit(String path, String[] materials, String[] rates, int i, int j) {
         String previous;
 
         if (j == 0) previous = "minecraft:" + materials[i];
         else previous = "compressor:" + rates[j - 1] + "compressed_" + materials[i];
 
-        addRecipe("compressor", path, create3x3RecipeJson( "item", new Identifier(previous), new Identifier(MODID, path), 1));
+        addRecipe("compressor", path, create3x3RecipeJson("item", new Identifier(previous), new Identifier(MODID, path), 1));
         addRecipe("compressor", path + "_sl", createShapelessRecipeJson("item", new Identifier(MODID, path), new Identifier(previous), 9));
 
         addLoot("compressor", "blocks/" + path, createBlockBreakLootJson(MODID, path));
