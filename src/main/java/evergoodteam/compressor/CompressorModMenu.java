@@ -1,9 +1,8 @@
-package evergoodteam;
+package evergoodteam.compressor;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import evergoodteam.chassis.configs.ConfigBase;
-import evergoodteam.util.CompressorReference;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;

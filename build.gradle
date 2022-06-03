@@ -13,6 +13,8 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
 
+    maven { url = "https://minecraft.guntram.de/maven/" }
+
     maven { url "https://maven.terraformersmc.com" }
     maven { url "https://jitpack.io" }
     mavenCentral()
@@ -27,10 +29,14 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    //Chassis
+    // Crowdin
+    modImplementation "de.guntram.mcmod:crowdin-translate:1.4+1.18"
+    include "de.guntram.mcmod:crowdin-translate:1.4+1.18"
+
+    // Chassis
     modImplementation "com.github.evergoodteam:chassis:${project.chassis_version}"
 
-    //ModMenu
+    // ModMenu
     modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
 }
 

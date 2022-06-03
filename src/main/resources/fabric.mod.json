@@ -20,12 +20,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "evergoodteam.Compressor"
+      "evergoodteam.compressor.Compressor"
     ],
     "client": [
     ],
     "modmenu": [
-      "evergoodteam.CompressorModMenu"
+      "evergoodteam.compressor.CompressorModMenu"
     ]
   },
   "mixins": [

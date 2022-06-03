@@ -1,10 +1,13 @@
 # Compressor <a href=https://www.curseforge.com/minecraft/mc-mods/compressor> <img src="http://cf.way2muchnoise.eu/563438.svg"> </a>
 
-A Minecraft mod that adds up to 8x compressed versions of Stone, Cobblestone, Gravel, Sand, Dirt, Netherrack, Basalt, Deepslate, Cobbled Deepslate, Blackstone and End Stone
+Minecraft mod that adds up to 8x compressed versions of Stone, Cobblestone, Gravel, Sand, Dirt, Netherrack, Basalt, Deepslate, Cobbled Deepslate, Blackstone and End Stone
 
 Versions above `0.1.0` require [**Chassis**](https://github.com/Librv/Chassis)
 
 Currently only available for the **Fabric ModLoader**, requires the [**Fabric API**](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
+
+## Translations
+You can contribute to the mod's translation to other language over at [**Crowdin**](https://crowdin.com/project/compressor)!
 
 ## Dev Versions
 

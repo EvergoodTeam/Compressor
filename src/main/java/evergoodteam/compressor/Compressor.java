@@ -1,5 +1,6 @@
-package evergoodteam;
+package evergoodteam.compressor;
 
+import de.guntram.mcmod.crowdintranslate.CrowdinTranslate;
 import evergoodteam.chassis.configs.ConfigHandler;
 import evergoodteam.chassis.objects.blocks.BlockBase;
 import evergoodteam.chassis.objects.groups.ItemGroupBase;
@@ -18,13 +19,15 @@ import static evergoodteam.chassis.objects.assets.RecipeJson.create3x3RecipeJson
 import static evergoodteam.chassis.objects.assets.RecipeJson.createShapelessRecipeJson;
 import static evergoodteam.chassis.util.handlers.InjectionHandler.*;
 import static evergoodteam.chassis.util.handlers.RegistryHandler.registerBlockAndItem;
-import static evergoodteam.util.CompressorReference.*;
+import static evergoodteam.compressor.CompressorReference.*;
 
 public class Compressor implements ModInitializer {
 
     /**
      * @see net.minecraft.block.Blocks
      */
+
+    // region Blocks
 
     final List<Block> BLOCKS = new ArrayList<>();
 
@@ -129,22 +132,26 @@ public class Compressor implements ModInitializer {
 
     final ItemGroup COMPRESSOR_GROUP = new ItemGroupBase(MODID, "itemgroup", OCTUPLE_COMPRESSED_COBBLESTONE).group;
 
+    //endregion
+
+    // TODO: Granite, Andesite, Diorite
+    // TODO: [NU] Retry overlays
+
     @Override
     public void onInitialize() {
-
         LOGGER.info("Booting up Compressor");
 
-        COMPRESSOR_CONFIGS.options.put("hideResourcePack", true);
-        COMPRESSOR_CONFIGS.addProperties();
+        CrowdinTranslate.downloadTranslations(MODID);
+
+        COMPRESSOR_CONFIGS.addProperty("hideResourcePack", true, "Hide Compressor's ResourcePack from the GUI")
+                .registerProperties();
 
         init();
 
         if (ConfigHandler.getBooleanOption(COMPRESSOR_CONFIGS, "hideResourcePack", true)) COMPRESSOR_RESOURCES.hide();
     }
 
-    public void init() {
-
-
+    private void init() {
         addColumnType(new String[]{"basalt", "compressed_deepslate", "blackstone"});
         addAssetInjection(MODID);
 
@@ -154,7 +161,6 @@ public class Compressor implements ModInitializer {
         List<String> toolTags = new ArrayList<>();
 
         int blockIndex = 0;
-
 
         for (int i = 0; i < materials.length; i++) {
             for (int j = 0; j < rates.length; j++) {
@@ -167,13 +173,13 @@ public class Compressor implements ModInitializer {
                     registerBlockAndItem("compressor", path, BLOCKS.get(blockIndex), COMPRESSOR_GROUP, "item.compressor.octuple_compressed_" + materials[i] + ".tooltip");
                 }
 
+                blockIndex++;
+
                 COMPRESSOR_RESOURCES.createBlockstate(path);
                 COMPRESSOR_RESOURCES.createGlobalTag(path);
 
                 toolTags.add(path);
-                blockIndex++;
-
-                recipeLootInit(path, materials, rates, i, j);
+                initRecipeLoot(path, materials, rates, i, j);
             }
         }
 
@@ -181,15 +187,11 @@ public class Compressor implements ModInitializer {
                 .createRequiredToolTag("pickaxe", toolTags.toArray(new String[0]));
     }
 
-    public void recipeLootInit(String path, String[] materials, String[] rates, int i, int j) {
-        String previous;
-
-        if (j == 0) previous = "minecraft:" + materials[i];
-        else previous = "compressor:" + rates[j - 1] + "compressed_" + materials[i];
+    private void initRecipeLoot(String path, String[] materials, String[] rates, int i, int j) {
+        String previous = j == 0 ? "minecraft:" + materials[i] : "compressor:" + rates[j - 1] + "compressed_" + materials[i];
 
         addRecipe("compressor", path, create3x3RecipeJson("item", new Identifier(previous), new Identifier(MODID, path), 1));
         addRecipe("compressor", path + "_sl", createShapelessRecipeJson("item", new Identifier(MODID, path), new Identifier(previous), 9));
-
         addLoot("compressor", "blocks/" + path, createBlockBreakLootJson(MODID, path));
     }
 }
