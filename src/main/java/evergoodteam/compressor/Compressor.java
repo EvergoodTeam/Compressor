@@ -23,10 +23,6 @@ import static evergoodteam.compressor.CompressorReference.*;
 
 public class Compressor implements ModInitializer {
 
-    /**
-     * @see net.minecraft.block.Blocks
-     */
-
     // region Blocks
 
     final List<Block> BLOCKS = new ArrayList<>();
@@ -39,6 +35,33 @@ public class Compressor implements ModInitializer {
     final Block SEXTUPLE_COMPRESSED_STONE = new BlockBase(BLOCKS, Material.STONE, 41.25f, 22.5f, BlockSoundGroup.STONE);
     final Block SEPTUPLE_COMPRESSED_STONE = new BlockBase(BLOCKS, Material.STONE, 55.75f, 27.7f, BlockSoundGroup.STONE);
     final Block OCTUPLE_COMPRESSED_STONE = new BlockBase(BLOCKS, Material.STONE, 72.5f, 33.6f, BlockSoundGroup.STONE);
+
+    final Block COMPRESSED_GRANITE = new BlockBase(BLOCKS, Material.STONE, 2.5f, 7.0f, BlockSoundGroup.STONE);
+    final Block DOUBLE_COMPRESSED_GRANITE = new BlockBase(BLOCKS, Material.STONE, 5.75f, 8.7f, BlockSoundGroup.STONE);
+    final Block TRIPLE_COMPRESSED_GRANITE = new BlockBase(BLOCKS, Material.STONE, 11.25f, 11.1f, BlockSoundGroup.STONE);
+    final Block QUADRUPLE_COMPRESSED_GRANITE = new BlockBase(BLOCKS, Material.STONE, 19.0f, 14.2f, BlockSoundGroup.STONE);
+    final Block QUINTUPLE_COMPRESSED_GRANITE = new BlockBase(BLOCKS, Material.STONE, 29.0f, 18.0f, BlockSoundGroup.STONE);
+    final Block SEXTUPLE_COMPRESSED_GRANITE = new BlockBase(BLOCKS, Material.STONE, 41.25f, 22.5f, BlockSoundGroup.STONE);
+    final Block SEPTUPLE_COMPRESSED_GRANITE = new BlockBase(BLOCKS, Material.STONE, 55.75f, 27.7f, BlockSoundGroup.STONE);
+    final Block OCTUPLE_COMPRESSED_GRANITE = new BlockBase(BLOCKS, Material.STONE, 72.5f, 33.6f, BlockSoundGroup.STONE);
+
+    final Block COMPRESSED_DIORITE = new BlockBase(BLOCKS, Material.STONE, 2.5f, 7.0f, BlockSoundGroup.STONE);
+    final Block DOUBLE_COMPRESSED_DIORITE = new BlockBase(BLOCKS, Material.STONE, 5.75f, 8.7f, BlockSoundGroup.STONE);
+    final Block TRIPLE_COMPRESSED_DIORITE = new BlockBase(BLOCKS, Material.STONE, 11.25f, 11.1f, BlockSoundGroup.STONE);
+    final Block QUADRUPLE_COMPRESSED_DIORITE = new BlockBase(BLOCKS, Material.STONE, 19.0f, 14.2f, BlockSoundGroup.STONE);
+    final Block QUINTUPLE_COMPRESSED_DIORITE = new BlockBase(BLOCKS, Material.STONE, 29.0f, 18.0f, BlockSoundGroup.STONE);
+    final Block SEXTUPLE_COMPRESSED_DIORITE = new BlockBase(BLOCKS, Material.STONE, 41.25f, 22.5f, BlockSoundGroup.STONE);
+    final Block SEPTUPLE_COMPRESSED_DIORITE = new BlockBase(BLOCKS, Material.STONE, 55.75f, 27.7f, BlockSoundGroup.STONE);
+    final Block OCTUPLE_COMPRESSED_DIORITE = new BlockBase(BLOCKS, Material.STONE, 72.5f, 33.6f, BlockSoundGroup.STONE);
+
+    final Block COMPRESSED_ANDESITE = new BlockBase(BLOCKS, Material.STONE, 2.5f, 7.0f, BlockSoundGroup.STONE);
+    final Block DOUBLE_COMPRESSED_ANDESITE = new BlockBase(BLOCKS, Material.STONE, 5.75f, 8.7f, BlockSoundGroup.STONE);
+    final Block TRIPLE_COMPRESSED_ANDESITE = new BlockBase(BLOCKS, Material.STONE, 11.25f, 11.1f, BlockSoundGroup.STONE);
+    final Block QUADRUPLE_COMPRESSED_ANDESITE = new BlockBase(BLOCKS, Material.STONE, 19.0f, 14.2f, BlockSoundGroup.STONE);
+    final Block QUINTUPLE_COMPRESSED_ANDESITE = new BlockBase(BLOCKS, Material.STONE, 29.0f, 18.0f, BlockSoundGroup.STONE);
+    final Block SEXTUPLE_COMPRESSED_ANDESITE = new BlockBase(BLOCKS, Material.STONE, 41.25f, 22.5f, BlockSoundGroup.STONE);
+    final Block SEPTUPLE_COMPRESSED_ANDESITE = new BlockBase(BLOCKS, Material.STONE, 55.75f, 27.7f, BlockSoundGroup.STONE);
+    final Block OCTUPLE_COMPRESSED_ANDESITE = new BlockBase(BLOCKS, Material.STONE, 72.5f, 33.6f, BlockSoundGroup.STONE);
 
     final Block COMPRESSED_COBBLESTONE = new BlockBase(BLOCKS, Material.STONE, 3.0f, 7.0f, BlockSoundGroup.STONE);
     final Block DOUBLE_COMPRESSED_COBBLESTONE = new BlockBase(BLOCKS, Material.STONE, 6.25f, 8.7f, BlockSoundGroup.STONE);
@@ -134,9 +157,11 @@ public class Compressor implements ModInitializer {
 
     //endregion
 
-    // TODO: Granite, Andesite, Diorite
     // TODO: [NU] Retry overlays
 
+    /**
+     * @see net.minecraft.block.Blocks
+     */
     @Override
     public void onInitialize() {
         LOGGER.info("Booting up Compressor");
@@ -155,7 +180,7 @@ public class Compressor implements ModInitializer {
         addColumnType(new String[]{"basalt", "compressed_deepslate", "blackstone"});
         addAssetInjection(MODID);
 
-        String[] materials = {"stone", "cobblestone", "gravel", "sand", "dirt", "netherrack", "basalt", "deepslate", "cobbled_deepslate", "blackstone", "end_stone"};
+        String[] materials = {"stone", "granite", "diorite", "andesite", "cobblestone", "gravel", "sand", "dirt", "netherrack", "basalt", "deepslate", "cobbled_deepslate", "blackstone", "end_stone"};
         String[] rates = {"", "double_", "triple_", "quadruple_", "quintuple_", "sextuple_", "septuple_", "octuple_"};
 
         List<String> toolTags = new ArrayList<>();
@@ -170,7 +195,7 @@ public class Compressor implements ModInitializer {
                 if (!"octuple_".equals(rates[j])) {
                     registerBlockAndItem("compressor", path, BLOCKS.get(blockIndex), COMPRESSOR_GROUP);
                 } else {
-                    registerBlockAndItem("compressor", path, BLOCKS.get(blockIndex), COMPRESSOR_GROUP, "item.compressor.octuple_compressed_" + materials[i] + ".tooltip");
+                    registerBlockAndItem("compressor", path, BLOCKS.get(blockIndex), COMPRESSOR_GROUP, "item.compressor.octuple.tooltip");
                 }
 
                 blockIndex++;
