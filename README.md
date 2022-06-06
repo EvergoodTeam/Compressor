@@ -1,4 +1,4 @@
-# Compressor <a href=https://www.curseforge.com/minecraft/mc-mods/compressor> <img src="http://cf.way2muchnoise.eu/563438.svg"> </a>
+# Compressor [![Curseforge](http://cf.way2muchnoise.eu/563438.svg)](https://www.curseforge.com/minecraft/mc-mods/compressor)
 
 Minecraft mod that adds up to 8x compressed versions of Stone, Cobblestone, Gravel, Sand, Dirt, Netherrack, Basalt, Deepslate, Cobbled Deepslate, Blackstone and End Stone
 

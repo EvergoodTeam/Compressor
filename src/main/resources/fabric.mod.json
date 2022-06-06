@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Compressor",
-  "description": "Provides up to 8x compressed blocks for Stone, Cobblestone, Gravel, Sand, Dirt, Netherrack, Basalt, Deepslate, Cobbled Deepslate, Blackstone and End Stone",
+  "description": "Provides up to 8x Compressed Blocks for commonly found resources",
   "authors": [
     "Libra"
   ],
