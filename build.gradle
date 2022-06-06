@@ -30,8 +30,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Crowdin
-    modImplementation "de.guntram.mcmod:crowdin-translate:1.4+1.18"
-    include "de.guntram.mcmod:crowdin-translate:1.4+1.18"
+    modImplementation "de.guntram.mcmod:crowdin-translate:${project.crowdin_version}"
+    include "de.guntram.mcmod:crowdin-translate:${project.crowdin_version}"
 
     // Chassis
     modImplementation "com.github.evergoodteam:chassis:${project.chassis_version}"
