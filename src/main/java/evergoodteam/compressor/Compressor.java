@@ -14,7 +14,6 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import static evergoodteam.chassis.objects.assets.LootJson.createBlockBreakLootJson;
 import static evergoodteam.chassis.objects.assets.RecipeJson.create3x3RecipeJson;
 import static evergoodteam.chassis.objects.assets.RecipeJson.createShapelessRecipeJson;
 import static evergoodteam.chassis.util.handlers.InjectionHandler.*;
@@ -178,7 +177,7 @@ public class Compressor implements ModInitializer {
 
     private void init() {
         addColumnType(new String[]{"basalt", "compressed_deepslate", "blackstone"});
-        addAssetInjection(MODID);
+        addModelInjection(MODID);
 
         String[] materials = {"stone", "granite", "diorite", "andesite", "cobblestone", "gravel", "sand", "dirt", "netherrack", "basalt", "deepslate", "cobbled_deepslate", "blackstone", "end_stone"};
         String[] rates = {"", "double_", "triple_", "quadruple_", "quintuple_", "sextuple_", "septuple_", "octuple_"};
@@ -201,6 +200,7 @@ public class Compressor implements ModInitializer {
                 blockIndex++;
 
                 COMPRESSOR_RESOURCES.createBlockstate(path);
+                COMPRESSOR_RESOURCES.createBlockDropLootTable(path);
                 COMPRESSOR_RESOURCES.createGlobalTag(path);
 
                 toolTags.add(path);
@@ -217,6 +217,5 @@ public class Compressor implements ModInitializer {
 
         addRecipe("compressor", path, create3x3RecipeJson("item", new Identifier(previous), new Identifier(MODID, path), 1));
         addRecipe("compressor", path + "_sl", createShapelessRecipeJson("item", new Identifier(MODID, path), new Identifier(previous), 9));
-        addLoot("compressor", "blocks/" + path, createBlockBreakLootJson(MODID, path));
     }
 }
