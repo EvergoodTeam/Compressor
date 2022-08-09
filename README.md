@@ -3,7 +3,7 @@
 Minecraft mod that adds up to 8x compressed versions of:   
 Stone, Granite, Diorite, Andesite, Cobblestone, Gravel, Sand, Dirt, Netherrack, Basalt, Deepslate, Cobbled Deepslate, Blackstone and End Stone
 
-Versions above `0.1.0` require [**Chassis**](https://github.com/EvergoodTeam/Chassis)
+Versions above `0.1.1` require [**Chassis**](https://github.com/EvergoodTeam/Chassis)
 
 Currently only available for the **Fabric ModLoader**, requires the [**Fabric API**](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 
