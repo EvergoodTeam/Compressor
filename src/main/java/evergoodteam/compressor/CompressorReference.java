@@ -13,5 +13,7 @@ public class CompressorReference {
     public static final Logger LOGGER = LoggerFactory.getLogger(StringUtils.capitalize(MODID));
 
     public static final ConfigBase COMPRESSOR_CONFIGS = new ConfigBase(MODID);
-    public static final ResourcePackBase COMPRESSOR_RESOURCES = new ResourcePackBase(COMPRESSOR_CONFIGS, MODID, "https://evergoodteam.github.io/utils/icons/compressorIcon.png", "e3caa5");
+    public static final ResourcePackBase COMPRESSOR_RESOURCES = new ResourcePackBase(COMPRESSOR_CONFIGS, MODID)
+            .setIcon("https://evergoodteam.github.io/utils/icons/compressorIcon.png")
+            .setColor("e3caa5");
 }
