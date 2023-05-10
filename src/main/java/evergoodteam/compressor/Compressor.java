@@ -73,40 +73,6 @@ public class Compressor implements ModInitializer {
                 for (Block o : CompressorBlocks.getGeneric()) {
                     consumer.registerSimpleCubeAll(o);
                 }
-
-                // Not needed when done at client? good ig
-            /*
-            for(Block b : CompressorBlocks.BLOCKS){
-                consumer.registerParentedItemModel(b, ModelIds.getBlockModelId(b));
-            }*/
-
-            /*
-            int i = 0;
-
-            for (Field field : CompressorBlocks.class.getDeclaredFields()) {
-                if (Modifier.isFinal(field.getModifiers()) && Block.class.isAssignableFrom(field.getType())) {
-
-                    String entryName = field.getName().toLowerCase();
-                    Block block = CompressorBlocks.BLOCKS.get(i);
-
-                    if (entryName.contains("basalt")) consumer.registerAxisRotated(block, TexturedModel.CUBE_COLUMN);
-                    else if (entryName.contains("blackstone")) {
-                        TexturedModel texturedModel = TexturedModel.SIDE_END_WALL.get(block);
-                        consumer.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(block, texturedModel.upload(block, consumer.modelCollector)));
-                    } else if (entryName.contains("compressed_deepslate")) {
-                        TexturedModel texturedModel = TexturedModel.SIDE_END_WALL.get(block);
-                        Identifier baseModelId = texturedModel.getModel().upload(block, texturedModel.getTextures(), consumer.modelCollector);
-                        consumer.blockStateCollector.accept(BlockStateModelGenerator.createDeepslateState(block, baseModelId, texturedModel.getTextures(), consumer.modelCollector));
-                    } else consumer.registerSimpleCubeAll(block);
-                    // TODO: why is this needed?
-                    consumer.registerParentedItemModel(block, ModelIds.getBlockModelId(block));
-
-                    blockLootTableProvider.buildBlock(block.getLootTableId(), builder -> builder.addDrop(block));
-                    tagProvider.build(TagKey.of(Registry.BLOCK_KEY, new Identifier("c", entryName)), builder -> builder.add(block));
-
-                    i++;
-                }
-            }*/
             });
 
             int index2 = 0;

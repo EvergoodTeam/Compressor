@@ -23,8 +23,8 @@ public class CompressorBlocks {
     public static final List<Block> BLACKSTONE = new ArrayList<>();
     public static final List<Block> DEEPSLATE = new ArrayList<>();
 
-    public static List<Block> getGeneric(){
-        List<Block> result = BLOCKS;
+    public static List<Block> getGeneric() {
+        List<Block> result = new ArrayList<>(BLOCKS);
         result.removeAll(BASALT);
         result.removeAll(BLACKSTONE);
         result.removeAll(DEEPSLATE);
