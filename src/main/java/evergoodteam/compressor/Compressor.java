@@ -1,7 +1,7 @@
 package evergoodteam.compressor;
 
 import de.guntram.mcmod.crowdintranslate.CrowdinTranslate;
-import evergoodteam.chassis.datagen.providers.ChassisLootTableProvider;
+import evergoodteam.chassis.datagen.providers.ChassisBlockLootTableProvider;
 import evergoodteam.chassis.datagen.providers.ChassisModelProvider;
 import evergoodteam.chassis.datagen.providers.ChassisRecipeProvider;
 import evergoodteam.chassis.datagen.providers.ChassisTagProvider;
@@ -9,13 +9,9 @@ import evergoodteam.chassis.util.StringUtils;
 import evergoodteam.chassis.util.handlers.RegistryHandler;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.client.TexturedModel;
-import net.minecraft.data.server.BlockLootTableGenerator;
 import net.minecraft.data.server.RecipeProvider;
-import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -24,7 +20,6 @@ import net.minecraft.util.registry.Registry;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static evergoodteam.compressor.CompressorReference.*;
@@ -44,34 +39,55 @@ public class Compressor implements ModInitializer {
         COMPRESSOR_CONFIGS.addBooleanProperty(COMPRESSOR_RESOURCES.getHideResourcePackProperty())
                 .registerProperties();
 
-        init();
+        //COMPRESSOR_RESOURCES.hide();
+
+        registerAdditions();
+        registerProviders();
     }
 
-    public void init() {
+    private void registerProviders() {
 
-        List<Block> uncompressed = Arrays.asList(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, Blocks.DIRT, Blocks.NETHERRACK, Blocks.BASALT, Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE, Blocks.BLACKSTONE, Blocks.END_STONE);
+        COMPRESSOR_RESOURCES.providerRegistry = () -> {
+            ChassisModelProvider modelProvider = ChassisModelProvider.create(COMPRESSOR_RESOURCES);
+            ChassisBlockLootTableProvider blockLootTableProvider = new ChassisBlockLootTableProvider(COMPRESSOR_RESOURCES);
+            ChassisTagProvider<Block> tagProvider = ChassisTagProvider.create(Registry.BLOCK, COMPRESSOR_RESOURCES);
+            ChassisRecipeProvider recipeProvider = ChassisRecipeProvider.create(COMPRESSOR_RESOURCES);
 
-        ChassisModelProvider modelProvider = ChassisModelProvider.create(COMPRESSOR_RESOURCES);
-        ChassisLootTableProvider lootTableProvider = ChassisLootTableProvider.create(LootContextTypes.BLOCK, COMPRESSOR_RESOURCES);
-        ChassisTagProvider<Block> tagProvider = ChassisTagProvider.create(Registry.BLOCK, COMPRESSOR_RESOURCES);
-        ChassisRecipeProvider recipeProvider = ChassisRecipeProvider.create(COMPRESSOR_RESOURCES);
+            modelProvider.buildBlock(consumer -> {
 
-        modelProvider.buildBlock(consumer -> {
+                for (Block b : CompressorBlocks.BASALT) {
+                    consumer.registerAxisRotated(b, TexturedModel.CUBE_COLUMN);
+                }
 
-            int index = 0;
+                for (Block b : CompressorBlocks.BLACKSTONE) {
+                    TexturedModel texturedModel = TexturedModel.SIDE_END_WALL.get(b);
+                    consumer.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(b, texturedModel.upload(b, consumer.modelCollector)));
+                }
+
+                for (Block d : CompressorBlocks.DEEPSLATE) {
+                    TexturedModel texturedModel = TexturedModel.SIDE_END_WALL.get(d);
+                    Identifier baseModelId = texturedModel.getModel().upload(d, texturedModel.getTextures(), consumer.modelCollector);
+                    consumer.blockStateCollector.accept(BlockStateModelGenerator.createDeepslateState(d, baseModelId, texturedModel.getTextures(), consumer.modelCollector));
+                }
+
+                for (Block o : CompressorBlocks.getGeneric()) {
+                    consumer.registerSimpleCubeAll(o);
+                }
+
+                // Not needed when done at client? good ig
+            /*
+            for(Block b : CompressorBlocks.BLOCKS){
+                consumer.registerParentedItemModel(b, ModelIds.getBlockModelId(b));
+            }*/
+
+            /*
+            int i = 0;
 
             for (Field field : CompressorBlocks.class.getDeclaredFields()) {
                 if (Modifier.isFinal(field.getModifiers()) && Block.class.isAssignableFrom(field.getType())) {
 
                     String entryName = field.getName().toLowerCase();
-
-                    if (!"octuple".equals(StringUtils.firstFromSplit(entryName, "_"))) {
-                        RegistryHandler.registerBlockAndItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index), CompressorBlocks.COMPRESSOR_GROUP);
-                    } else {
-                        RegistryHandler.registerBlockAndItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index), CompressorBlocks.COMPRESSOR_GROUP, "item.compressor.octuple.tooltip");
-                    }
-
-                    Block block = CompressorBlocks.BLOCKS.get(index);
+                    Block block = CompressorBlocks.BLOCKS.get(i);
 
                     if (entryName.contains("basalt")) consumer.registerAxisRotated(block, TexturedModel.CUBE_COLUMN);
                     else if (entryName.contains("blackstone")) {
@@ -85,33 +101,66 @@ public class Compressor implements ModInitializer {
                     // TODO: why is this needed?
                     consumer.registerParentedItemModel(block, ModelIds.getBlockModelId(block));
 
-                    lootTableProvider.build(block.getLootTableId(), BlockLootTableGenerator.drops(block));
+                    blockLootTableProvider.buildBlock(block.getLootTableId(), builder -> builder.addDrop(block));
                     tagProvider.build(TagKey.of(Registry.BLOCK_KEY, new Identifier("c", entryName)), builder -> builder.add(block));
 
-                    index++;
+                    i++;
+                }
+            }*/
+            });
+
+            int index2 = 0;
+            for (Field field : CompressorBlocks.class.getDeclaredFields()) {
+                if (Modifier.isFinal(field.getModifiers()) && Block.class.isAssignableFrom(field.getType())) {
+
+                    String entryName = field.getName().toLowerCase();
+                    Block block = CompressorBlocks.BLOCKS.get(index2);
+
+                    blockLootTableProvider.buildBlock(block.getLootTableId(), builder -> builder.addDrop(block));
+                    tagProvider.build(TagKey.of(Registry.BLOCK_KEY, new Identifier("c", entryName)), builder -> builder.add(block));
+
+                    index2++;
                 }
             }
-        });
 
+            recipeProvider.build(exporter -> {
+                for (int i = 0; i < CompressorBlocks.BLOCKS.size(); i++) {
+                    // TODO: switch naming scheme (done?)
+                    Block block = CompressorBlocks.BLOCKS.get(i);
+                    Block previous = i % 8 == 0 ? CompressorBlocks.UNCOMPRESSED.get(i / 8) : CompressorBlocks.BLOCKS.get(i - 1);
+                    RecipeProvider.offerReversibleCompactingRecipes(exporter, previous, block, RecipeProvider.getItemPath(previous) + "_to_" + RecipeProvider.getItemPath(block), null, RecipeProvider.getItemPath(previous) + "_from_" + RecipeProvider.getItemPath(block), null);
+                }
+            });
 
-        recipeProvider.build(exporter -> {
-            for (int i = 0; i < CompressorBlocks.BLOCKS.size(); i++) {
-                // TODO: switch naming scheme
-                Block block = CompressorBlocks.BLOCKS.get(i);
-                Block previous = i % 8 == 0 ? uncompressed.get(i / 8) : CompressorBlocks.BLOCKS.get(i - 1);
-                RecipeProvider.offerReversibleCompactingRecipes(exporter, previous, block, RecipeProvider.getItemPath(previous) + "_to_" + RecipeProvider.getItemPath(block), null, RecipeProvider.getItemPath(previous) + "_from_" + RecipeProvider.getItemPath(block), null);
+            COMPRESSOR_RESOURCES.addProvider(modelProvider)
+                    .addProvider(tagProvider
+                            .build(BlockTags.NEEDS_STONE_TOOL, builder -> builder
+                                    .add(CompressorBlocks.BLOCKS.toArray(new Block[0])))
+                            .build(BlockTags.PICKAXE_MINEABLE, builder -> builder
+                                    .add(CompressorBlocks.BLOCKS.toArray(new Block[0])))
+                    )
+                    .addProvider(recipeProvider)
+                    .addProvider(blockLootTableProvider)
+                    .runProviders();
+        };
+    }
+
+    private void registerAdditions() {
+
+        int index = 0;
+        for (Field field : CompressorBlocks.class.getDeclaredFields()) {
+            if (Modifier.isFinal(field.getModifiers()) && Block.class.isAssignableFrom(field.getType())) {
+
+                String entryName = field.getName().toLowerCase();
+
+                if (!"octuple".equals(StringUtils.firstFromSplit(entryName, "_"))) {
+                    RegistryHandler.registerBlockAndItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index), CompressorBlocks.COMPRESSOR_GROUP);
+                } else {
+                    RegistryHandler.registerBlockAndItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index), CompressorBlocks.COMPRESSOR_GROUP, "item.compressor.octuple.tooltip");
+                }
+
+                index++;
             }
-        });
-
-        COMPRESSOR_RESOURCES.addProvider(modelProvider)
-                .addProvider(tagProvider
-                        .build(BlockTags.NEEDS_STONE_TOOL, builder -> builder
-                                .add(CompressorBlocks.BLOCKS.toArray(new Block[0])))
-                        .build(BlockTags.PICKAXE_MINEABLE, builder -> builder
-                                .add(CompressorBlocks.BLOCKS.toArray(new Block[0])))
-                )
-                .addProvider(recipeProvider)
-                .addProvider(lootTableProvider)
-                .runProviders();
+        }
     }
 }

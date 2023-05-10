@@ -4,18 +4,42 @@ import evergoodteam.chassis.objects.blocks.BlockBase;
 import evergoodteam.chassis.objects.blocks.PillarBase;
 import evergoodteam.chassis.objects.groups.ItemGroupBase;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static evergoodteam.compressor.CompressorReference.MODID;
 
 public class CompressorBlocks {
 
+    public static final List<Block> UNCOMPRESSED = Arrays.asList(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, Blocks.DIRT, Blocks.NETHERRACK, Blocks.BASALT, Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE, Blocks.BLACKSTONE, Blocks.END_STONE, Blocks.TUFF, Blocks.CALCITE);
     public static final List<Block> BLOCKS = new ArrayList<>();
+    public static final List<Block> BASALT = new ArrayList<>();
+    public static final List<Block> BLACKSTONE = new ArrayList<>();
+    public static final List<Block> DEEPSLATE = new ArrayList<>();
+
+    public static List<Block> getGeneric(){
+        List<Block> result = BLOCKS;
+        result.removeAll(BASALT);
+        result.removeAll(BLACKSTONE);
+        result.removeAll(DEEPSLATE);
+        return result;
+    }
+
+    /*
+     * + 3.25
+     * + 5.5
+     * + 7.75
+     * + 10
+     * + 12.25
+     * + 14.5
+     * + 16.75
+     */
 
     // region Blocks
     public static final Block COMPRESSED_STONE = new BlockBase(BLOCKS, Material.STONE, 2.5f, 7.0f, BlockSoundGroup.STONE);
@@ -99,23 +123,23 @@ public class CompressorBlocks {
     public static final Block SEPTUPLE_COMPRESSED_NETHERRACK = new BlockBase(BLOCKS, Material.STONE, 54.65f, BlockSoundGroup.NETHERRACK);
     public static final Block OCTUPLE_COMPRESSED_NETHERRACK = new BlockBase(BLOCKS, Material.STONE, 71.4f, BlockSoundGroup.NETHERRACK);
 
-    public static final Block COMPRESSED_BASALT = new PillarBase(Material.STONE, 2.25f, 5.2f, BlockSoundGroup.BASALT).addTo(BLOCKS);
-    public static final Block DOUBLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 5.5f, 6.9f, BlockSoundGroup.BASALT).addTo(BLOCKS);
-    public static final Block TRIPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 11.0f, 9.3f, BlockSoundGroup.BASALT).addTo(BLOCKS);
-    public static final Block QUADRUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 18.75f, 12.4f, BlockSoundGroup.BASALT).addTo(BLOCKS);
-    public static final Block QUINTUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 28.75f, 16.2f, BlockSoundGroup.BASALT).addTo(BLOCKS);
-    public static final Block SEXTUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 41.0f, 20.7f, BlockSoundGroup.BASALT).addTo(BLOCKS);
-    public static final Block SEPTUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 55.5f, 25.9f, BlockSoundGroup.BASALT).addTo(BLOCKS);
-    public static final Block OCTUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 72.25f, 31.8f, BlockSoundGroup.BASALT).addTo(BLOCKS);
+    public static final Block COMPRESSED_BASALT = new PillarBase(Material.STONE, 2.25f, 5.2f, BlockSoundGroup.BASALT).addTo(BLOCKS).addTo(BASALT);
+    public static final Block DOUBLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 5.5f, 6.9f, BlockSoundGroup.BASALT).addTo(BLOCKS).addTo(BASALT);
+    public static final Block TRIPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 11.0f, 9.3f, BlockSoundGroup.BASALT).addTo(BLOCKS).addTo(BASALT);
+    public static final Block QUADRUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 18.75f, 12.4f, BlockSoundGroup.BASALT).addTo(BLOCKS).addTo(BASALT);
+    public static final Block QUINTUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 28.75f, 16.2f, BlockSoundGroup.BASALT).addTo(BLOCKS).addTo(BASALT);
+    public static final Block SEXTUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 41.0f, 20.7f, BlockSoundGroup.BASALT).addTo(BLOCKS).addTo(BASALT);
+    public static final Block SEPTUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 55.5f, 25.9f, BlockSoundGroup.BASALT).addTo(BLOCKS).addTo(BASALT);
+    public static final Block OCTUPLE_COMPRESSED_BASALT = new PillarBase(Material.STONE, 72.25f, 31.8f, BlockSoundGroup.BASALT).addTo(BLOCKS).addTo(BASALT);
 
-    public static final Block COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 4.0f, 7.0f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS);
-    public static final Block DOUBLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 7.25f, 8.7f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS);
-    public static final Block TRIPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 12.75f, 11.1f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS);
-    public static final Block QUADRUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 20.5f, 14.2f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS);
-    public static final Block QUINTUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 30.5f, 18.0f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS);
-    public static final Block SEXTUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 42.75f, 22.5f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS);
-    public static final Block SEPTUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 57.25f, 27.7f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS);
-    public static final Block OCTUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 74.0f, 33.6f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS);
+    public static final Block COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 4.0f, 7.0f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS).addTo(DEEPSLATE);
+    public static final Block DOUBLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 7.25f, 8.7f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS).addTo(DEEPSLATE);
+    public static final Block TRIPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 12.75f, 11.1f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS).addTo(DEEPSLATE);
+    public static final Block QUADRUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 20.5f, 14.2f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS).addTo(DEEPSLATE);
+    public static final Block QUINTUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 30.5f, 18.0f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS).addTo(DEEPSLATE);
+    public static final Block SEXTUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 42.75f, 22.5f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS).addTo(DEEPSLATE);
+    public static final Block SEPTUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 57.25f, 27.7f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS).addTo(DEEPSLATE);
+    public static final Block OCTUPLE_COMPRESSED_DEEPSLATE = new PillarBase(Material.STONE, 74.0f, 33.6f, BlockSoundGroup.DEEPSLATE).addTo(BLOCKS).addTo(DEEPSLATE);
 
     public static final Block COMPRESSED_COBBLED_DEEPSLATE = new BlockBase(BLOCKS, Material.STONE, 4.5f, 7.0f, BlockSoundGroup.DEEPSLATE);
     public static final Block DOUBLE_COMPRESSED_COBBLED_DEEPSLATE = new BlockBase(BLOCKS, Material.STONE, 7.75f, 8.7f, BlockSoundGroup.DEEPSLATE);
@@ -126,14 +150,14 @@ public class CompressorBlocks {
     public static final Block SEPTUPLE_COMPRESSED_COBBLED_DEEPSLATE = new BlockBase(BLOCKS, Material.STONE, 57.75f, 27.7f, BlockSoundGroup.DEEPSLATE);
     public static final Block OCTUPLE_COMPRESSED_COBBLED_DEEPSLATE = new BlockBase(BLOCKS, Material.STONE, 74.5f, 33.6f, BlockSoundGroup.DEEPSLATE);
 
-    public static final Block COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 2.5f, 7.0f, BlockSoundGroup.STONE);
-    public static final Block DOUBLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 5.75f, 8.7f, BlockSoundGroup.STONE);
-    public static final Block TRIPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 11.25f, 11.1f, BlockSoundGroup.STONE);
-    public static final Block QUADRUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 19.0f, 14.2f, BlockSoundGroup.STONE);
-    public static final Block QUINTUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 29.0f, 18.0f, BlockSoundGroup.STONE);
-    public static final Block SEXTUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 41.25f, 22.5f, BlockSoundGroup.STONE);
-    public static final Block SEPTUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 55.75f, 27.7f, BlockSoundGroup.STONE);
-    public static final Block OCTUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 72.5f, 33.6f, BlockSoundGroup.STONE);
+    public static final Block COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 2.5f, 7.0f, BlockSoundGroup.STONE).addTo(BLACKSTONE);
+    public static final Block DOUBLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 5.75f, 8.7f, BlockSoundGroup.STONE).addTo(BLACKSTONE);
+    public static final Block TRIPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 11.25f, 11.1f, BlockSoundGroup.STONE).addTo(BLACKSTONE);
+    public static final Block QUADRUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 19.0f, 14.2f, BlockSoundGroup.STONE).addTo(BLACKSTONE);
+    public static final Block QUINTUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 29.0f, 18.0f, BlockSoundGroup.STONE).addTo(BLACKSTONE);
+    public static final Block SEXTUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 41.25f, 22.5f, BlockSoundGroup.STONE).addTo(BLACKSTONE);
+    public static final Block SEPTUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 55.75f, 27.7f, BlockSoundGroup.STONE).addTo(BLACKSTONE);
+    public static final Block OCTUPLE_COMPRESSED_BLACKSTONE = new BlockBase(BLOCKS, Material.STONE, 72.5f, 33.6f, BlockSoundGroup.STONE).addTo(BLACKSTONE);
 
     public static final Block COMPRESSED_END_STONE = new BlockBase(BLOCKS, Material.STONE, 4.0f, 10.0f, BlockSoundGroup.STONE);
     public static final Block DOUBLE_COMPRESSED_END_STONE = new BlockBase(BLOCKS, Material.STONE, 7.25f, 11.7f, BlockSoundGroup.STONE);
@@ -143,6 +167,24 @@ public class CompressorBlocks {
     public static final Block SEXTUPLE_COMPRESSED_END_STONE = new BlockBase(BLOCKS, Material.STONE, 42.75f, 25.5f, BlockSoundGroup.STONE);
     public static final Block SEPTUPLE_COMPRESSED_END_STONE = new BlockBase(BLOCKS, Material.STONE, 57.25f, 30.7f, BlockSoundGroup.STONE);
     public static final Block OCTUPLE_COMPRESSED_END_STONE = new BlockBase(BLOCKS, Material.STONE, 74.0f, 36.6f, BlockSoundGroup.STONE);
+
+    public static final Block COMPRESSED_TUFF = new BlockBase(BLOCKS, Material.STONE, 2.5f, 7.0f, BlockSoundGroup.TUFF);
+    public static final Block DOUBLE_COMPRESSED_TUFF = new BlockBase(BLOCKS, Material.STONE, 5.75f, 8.7f, BlockSoundGroup.TUFF);
+    public static final Block TRIPLE_COMPRESSED_TUFF = new BlockBase(BLOCKS, Material.STONE, 11.25f, 11.1f, BlockSoundGroup.TUFF);
+    public static final Block QUADRUPLE_COMPRESSED_TUFF = new BlockBase(BLOCKS, Material.STONE, 19.0f, 14.2f, BlockSoundGroup.TUFF);
+    public static final Block QUINTUPLE_COMPRESSED_TUFF = new BlockBase(BLOCKS, Material.STONE, 29.0f, 18.0f, BlockSoundGroup.TUFF);
+    public static final Block SEXTUPLE_COMPRESSED_TUFF = new BlockBase(BLOCKS, Material.STONE, 41.25f, 22.5f, BlockSoundGroup.TUFF);
+    public static final Block SEPTUPLE_COMPRESSED_TUFF = new BlockBase(BLOCKS, Material.STONE, 55.75f, 27.7f, BlockSoundGroup.TUFF);
+    public static final Block OCTUPLE_COMPRESSED_TUFF = new BlockBase(BLOCKS, Material.STONE, 72.5f, 33.6f, BlockSoundGroup.TUFF);
+
+    public static final Block COMPRESSED_CALCITE = new BlockBase(BLOCKS, Material.STONE, 1.75f, BlockSoundGroup.CALCITE);
+    public static final Block DOUBLE_COMPRESSED_CALCITE = new BlockBase(BLOCKS, Material.STONE, 5.0f, BlockSoundGroup.CALCITE);
+    public static final Block TRIPLE_COMPRESSED_CALCITE = new BlockBase(BLOCKS, Material.STONE, 10.5f, BlockSoundGroup.CALCITE);
+    public static final Block QUADRUPLE_COMPRESSED_CALCITE = new BlockBase(BLOCKS, Material.STONE, 18.25f, BlockSoundGroup.CALCITE);
+    public static final Block QUINTUPLE_COMPRESSED_CALCITE = new BlockBase(BLOCKS, Material.STONE, 28.25f, BlockSoundGroup.CALCITE);
+    public static final Block SEXTUPLE_COMPRESSED_CALCITE = new BlockBase(BLOCKS, Material.STONE, 40.5f, BlockSoundGroup.CALCITE);
+    public static final Block SEPTUPLE_COMPRESSED_CALCITE = new BlockBase(BLOCKS, Material.STONE, 55.0f, BlockSoundGroup.CALCITE);
+    public static final Block OCTUPLE_COMPRESSED_CALCITE = new BlockBase(BLOCKS, Material.STONE, 71.75f, BlockSoundGroup.CALCITE);
     //endregion
 
     public static final ItemGroup COMPRESSOR_GROUP = ItemGroupBase.createItemGroup(MODID, "itemgroup", OCTUPLE_COMPRESSED_COBBLESTONE);
