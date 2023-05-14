@@ -19,14 +19,10 @@ import net.minecraft.util.registry.Registry;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
 
 import static evergoodteam.compressor.CompressorReference.*;
 
 public class Compressor implements ModInitializer {
-
-    public static final List<String> ENTRY_NAMES = new ArrayList<>();
 
     // TODO: [NU] Retry overlays
 
@@ -38,8 +34,6 @@ public class Compressor implements ModInitializer {
 
         COMPRESSOR_CONFIGS.addBooleanProperty(COMPRESSOR_RESOURCES.getHideResourcePackProperty())
                 .registerProperties();
-
-        //COMPRESSOR_RESOURCES.hide();
 
         registerAdditions();
         registerProviders();

@@ -1,7 +1,7 @@
 plugins {
     id 'fabric-loom' version '1.2-SNAPSHOT'
     id 'maven-publish'
-    id "io.freefair.lombok" version "${lombok_version}"
+    //id "io.freefair.lombok" version "${lombok_version}"
 }
 
 version = project.mod_version
