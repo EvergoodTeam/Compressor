@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:triple_compressed_tuff_to_quadruple_compressed_tuff"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_triple_compressed_tuff": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressor:triple_compressed_tuff"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_triple_compressed_tuff",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:triple_compressed_tuff_to_quadruple_compressed_tuff"
+    ]
+  }
+}

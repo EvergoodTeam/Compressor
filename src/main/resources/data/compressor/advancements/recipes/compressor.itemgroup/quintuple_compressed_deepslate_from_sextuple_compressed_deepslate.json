@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sextuple_compressed_deepslate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressor:sextuple_compressed_deepslate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:quintuple_compressed_deepslate_from_sextuple_compressed_deepslate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_sextuple_compressed_deepslate",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:quintuple_compressed_deepslate_from_sextuple_compressed_deepslate"
+    ]
+  }
+}

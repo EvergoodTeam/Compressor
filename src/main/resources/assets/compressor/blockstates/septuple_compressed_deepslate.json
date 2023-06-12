@@ -1,0 +1,62 @@
+{
+  "variants": {
+    "axis=x": [
+      {
+        "model": "compressor:block/septuple_compressed_deepslate",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "compressor:block/septuple_compressed_deepslate_mirrored",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "compressor:block/septuple_compressed_deepslate",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "compressor:block/septuple_compressed_deepslate_mirrored",
+        "x": 90,
+        "y": 90
+      }
+    ],
+    "axis=y": [
+      {
+        "model": "compressor:block/septuple_compressed_deepslate"
+      },
+      {
+        "model": "compressor:block/septuple_compressed_deepslate_mirrored"
+      },
+      {
+        "model": "compressor:block/septuple_compressed_deepslate",
+        "y": 180
+      },
+      {
+        "model": "compressor:block/septuple_compressed_deepslate_mirrored",
+        "y": 180
+      }
+    ],
+    "axis=z": [
+      {
+        "model": "compressor:block/septuple_compressed_deepslate",
+        "x": 90
+      },
+      {
+        "model": "compressor:block/septuple_compressed_deepslate_mirrored",
+        "x": 90
+      },
+      {
+        "model": "compressor:block/septuple_compressed_deepslate",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "compressor:block/septuple_compressed_deepslate_mirrored",
+        "x": 90,
+        "y": 180
+      }
+    ]
+  }
+}

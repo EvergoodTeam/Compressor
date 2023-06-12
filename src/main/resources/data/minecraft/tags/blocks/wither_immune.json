@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "compressor:octuple_compressed_stone",
+    "compressor:octuple_compressed_granite",
+    "compressor:octuple_compressed_diorite",
+    "compressor:octuple_compressed_andesite",
+    "compressor:octuple_compressed_cobblestone",
+    "compressor:octuple_compressed_gravel",
+    "compressor:octuple_compressed_sand",
+    "compressor:octuple_compressed_dirt",
+    "compressor:octuple_compressed_netherrack",
+    "compressor:octuple_compressed_basalt",
+    "compressor:octuple_compressed_deepslate",
+    "compressor:octuple_compressed_cobbled_deepslate",
+    "compressor:octuple_compressed_blackstone",
+    "compressor:octuple_compressed_end_stone",
+    "compressor:octuple_compressed_tuff",
+    "compressor:octuple_compressed_calcite"
+  ]
+}

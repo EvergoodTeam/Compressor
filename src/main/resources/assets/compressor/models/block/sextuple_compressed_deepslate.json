@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "compressor:block/sextuple_compressed_deepslate_top",
+    "side": "compressor:block/sextuple_compressed_deepslate"
+  }
+}

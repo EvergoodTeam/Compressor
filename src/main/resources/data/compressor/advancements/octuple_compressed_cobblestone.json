@@ -1,0 +1,37 @@
+{
+  "criteria": {
+    "inventory_changed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressor:octuple_compressed_cobblestone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/deepslate_tiles.png",
+    "description": {
+      "translate": "advancements.compressor.octuple_compressed_cobblestone"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "compressor:octuple_compressed_cobblestone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "block.compressor.octuple_compressed_cobblestone"
+    }
+  },
+  "requirements": [
+    [
+      "inventory_changed"
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "compressor:block/quadruple_compressed_basalt",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "compressor:block/quadruple_compressed_basalt"
+    },
+    "axis=z": {
+      "model": "compressor:block/quadruple_compressed_basalt",
+      "x": 90
+    }
+  }
+}

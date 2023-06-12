@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:double_compressed_calcite_from_triple_compressed_calcite"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_triple_compressed_calcite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "compressor:triple_compressed_calcite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_triple_compressed_calcite",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:double_compressed_calcite_from_triple_compressed_calcite"
+    ]
+  }
+}
