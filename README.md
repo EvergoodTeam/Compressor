@@ -13,11 +13,8 @@ You can contribute to the mod's translation in other languages over at [**Crowdi
 ## Support us!
 Want to support us? Make sure to use **CODE `Libra`** for **25% OFF** your order when renting a server over at [**BisectHosting**](https://www.bisecthosting.com/Libra)
 
-## Discord
-Join us on [**Discord**](https://discord.gg/k2P68Y8) for support and updates on upcoming versions
-
 ## Issues
-If you encounter any issue during your playthrough, either with the Modpack itself or the Server Pack, make sure to report it either here on [**GitHub**](https://github.com/EvergoodTeam/Compressor/issues) or on [**Discord**](https://discord.gg/k2P68Y8) in the designated ```#issues``` channel
+If you encounter any issue during your playthrough, please report it to us here on [**GitHub**](https://github.com/EvergoodTeam/Compressor/issues)
 
 ***
 
