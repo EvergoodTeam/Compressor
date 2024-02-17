@@ -1,7 +1,7 @@
 package evergoodteam.compressor;
 
-import evergoodteam.chassis.configs.ConfigBase;
-import evergoodteam.chassis.objects.resourcepacks.ResourcePackBase;
+import evergoodteam.chassis.common.resourcepack.ResourcePackBase;
+import evergoodteam.chassis.config.ConfigBase;
 import evergoodteam.chassis.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

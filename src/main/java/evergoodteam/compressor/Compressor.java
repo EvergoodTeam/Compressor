@@ -1,7 +1,7 @@
 package evergoodteam.compressor;
 
 import de.guntram.mcmod.crowdintranslate.CrowdinTranslate;
-import evergoodteam.chassis.configs.options.BooleanOption;
+import evergoodteam.chassis.config.option.BooleanOption;
 import evergoodteam.chassis.util.StringUtils;
 import evergoodteam.chassis.util.handlers.RegistryHandler;
 import net.fabricmc.api.ModInitializer;
@@ -34,6 +34,8 @@ public class Compressor implements ModInitializer {
     }
 
     private void registerAdditions() {
+        RegistryHandler registryHandler = new RegistryHandler(MODID);
+        registryHandler.registerItemGroup("compressor", "itemgroup", CompressorBlocks.COMPRESSOR_GROUP);
 
         int index = 0;
         for (Field field : CompressorBlocks.class.getDeclaredFields()) {
@@ -42,13 +44,13 @@ public class Compressor implements ModInitializer {
                 String entryName = field.getName().toLowerCase();
 
                 if (COMPRESSOR_CONFIGS.getOptionStorage().getBooleanOption("showAllTooltips").getValue())
-                    RegistryHandler.registerBlockAndItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index), CompressorBlocks.COMPRESSOR_GROUP, "item.compressor." + StringUtils.firstFromSplit(entryName, "_") + ".tooltip");
+                    registryHandler.registerBlockWithItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index), Text.translatable("item.compressor." + StringUtils.firstFromSplit(entryName, "_") + ".tooltip"));
 
                 else {
                     if (!"octuple".equals(StringUtils.firstFromSplit(entryName, "_"))) {
-                        RegistryHandler.registerBlockAndItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index), CompressorBlocks.COMPRESSOR_GROUP);
+                        registryHandler.registerBlockWithItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index));
                     } else {
-                        RegistryHandler.registerBlockAndItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index), CompressorBlocks.COMPRESSOR_GROUP, "item.compressor.octuple.tooltip");
+                        registryHandler.registerBlockWithItem("compressor", entryName, CompressorBlocks.BLOCKS.get(index), Text.translatable("item.compressor.octuple.tooltip"));
                     }
                 }
 
