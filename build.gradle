@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.2-SNAPSHOT'
+    id 'fabric-loom' version '1.5-SNAPSHOT'
     id 'maven-publish'
     //id "io.freefair.lombok" version "${lombok_version}"
 }
@@ -35,6 +35,7 @@ dependencies {
     include "de.guntram.mcmod:crowdin-translate:${project.crowdin_version}"
 
     // Chassis
+    //implementation project(path: ":ChassisCopy", configuration: "namedElements")
     modImplementation "com.github.EvergoodTeam:Chassis:${project.chassis_version}"
 
     // ModMenu

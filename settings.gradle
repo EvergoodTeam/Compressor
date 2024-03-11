@@ -7,3 +7,6 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+//include(":ChassisCopy")
+//project(":ChassisCopy").projectDir = new File('../ChassisCopy')
