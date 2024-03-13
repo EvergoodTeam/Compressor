@@ -1,6 +1,7 @@
 package evergoodteam.compressor;
 
 import de.guntram.mcmod.crowdintranslate.CrowdinTranslate;
+import evergoodteam.chassis.client.gui.text.GradientText;
 import evergoodteam.chassis.config.option.BooleanOption;
 import evergoodteam.chassis.config.option.CategoryOption;
 import evergoodteam.chassis.util.StringUtils;
@@ -22,7 +23,16 @@ public class Compressor implements ModInitializer {
 
         CrowdinTranslate.downloadTranslations(MODID);
 
-        COMPRESSOR_CONFIGS.addCategory(new CategoryOption(COMPRESSOR_CONFIGS, "test", "test comment")
+        setupConfigs();
+        registerAdditions();
+    }
+
+    private void setupConfigs() {
+        COMPRESSOR_CONFIGS.setDisplayTitle(GradientText.copyOf(Text.literal("Compressor"))
+                        .setColorPoints(25, "e3caa5", "ccb38f", "e3caa5")
+                        .setScrollDelay(2)
+                )
+                .addCategory(new CategoryOption(COMPRESSOR_CONFIGS, "test", "test comment")
                         .addBooleanOption(COMPRESSOR_RESOURCES.getHideResourcePackProperty())
                         .addBooleanOption(new BooleanOption("showAllTooltips", false,
                                 Text.translatable("config.compressor.showAllTooltips"),
@@ -30,7 +40,8 @@ public class Compressor implements ModInitializer {
                                 .setComment("Show a quantity tooltip for all compressed blocks").build()))
                 .registerProperties();
 
-        registerAdditions();
+        COMPRESSOR_CONFIGS.getNetworkHandler().registerJoinListener();
+        COMPRESSOR_CONFIGS.getNetworkHandler().registerServerReceiver();
     }
 
     private void registerAdditions() {

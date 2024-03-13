@@ -15,7 +15,5 @@ public class CompressorReference {
 
     public static final ConfigBase COMPRESSOR_CONFIGS = new ConfigBase(new Identifier(MODID, MODID));
     public static final ResourcePackBase COMPRESSOR_RESOURCES = new ResourcePackBase(COMPRESSOR_CONFIGS, MODID, StringUtils.capitalize(MODID), false, true)
-            .setIcon("https://evergoodteam.github.io/utils/icons/compressorIcon.png")
             .setColor("e3caa5");
-
 }
