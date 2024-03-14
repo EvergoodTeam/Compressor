@@ -33,9 +33,8 @@
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": "*",
-    "minecraft": ">=1.19.2",
-    "java": ">=17",
-    "chassis": ">=1.2.3"
+    "minecraft": ">=1.20.2",
+    "chassis": "1.3.x+02"
   },
   "suggests": {
     "another-mod": "*"
@@ -43,7 +42,6 @@
   "custom": {
     "modmenu": {
       "links": {
-        "Discord": "https://discord.gg/k2P68Y8",
         "BisectHosting": "https://www.bisecthosting.com/Libra"
       }
     }
