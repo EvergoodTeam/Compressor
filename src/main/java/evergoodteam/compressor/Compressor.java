@@ -46,8 +46,8 @@ public class Compressor implements ModInitializer {
                                 .setComment("Show a quantity tooltip for all compressed blocks").build()))
                 .registerProperties();
 
-        COMPRESSOR_CONFIGS.getNetworkHandler().registerJoinListener();
-        COMPRESSOR_CONFIGS.getNetworkHandler().registerServerReceiver();
+        COMPRESSOR_CONFIGS.getNetworkHandler().registerServerConnectionListener();
+        COMPRESSOR_CONFIGS.getNetworkHandler().registerHandshakeReceiver();
     }
 
     private void registerAdditions() {
