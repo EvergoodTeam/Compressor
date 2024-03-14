@@ -17,9 +17,11 @@ import static evergoodteam.compressor.CompressorReference.*;
 
 public class Compressor implements ModInitializer {
 
+    private final RegistryHandler registryHandler = new RegistryHandler(MODID);
+
     @Override
     public void onInitialize() {
-        LOGGER.info("Compressing cobblestone...");
+        LOGGER.info("Initializing Compressor! Compressing 43,046,721 blocks...");
 
         CrowdinTranslate.downloadTranslations(MODID);
 
@@ -29,10 +31,14 @@ public class Compressor implements ModInitializer {
 
     private void setupConfigs() {
         COMPRESSOR_CONFIGS.setDisplayTitle(GradientText.copyOf(Text.literal("Compressor"))
-                        .setColorPoints(25, "e3caa5", "ccb38f", "e3caa5")
-                        .setScrollDelay(2)
-                )
-                .addCategory(new CategoryOption(COMPRESSOR_CONFIGS, "test", "test comment")
+                .setColorPoints(15, "e3caa5", "d6b789", "bfa073", "d6b789", "e3caa5")
+                .setScrollDelay(5)
+        );
+
+        CategoryOption CLIENT = new CategoryOption(COMPRESSOR_CONFIGS, "Client Options", "Options that only affect the client side").getBuilder()
+                .setDisplayName(GradientText.copyOf(Text.literal("Client Options")).setColorPoints("cfae7d")).build(); // TODO: using setStyle overwrites comment's color
+
+        COMPRESSOR_CONFIGS.addCategory(CLIENT
                         .addBooleanOption(COMPRESSOR_RESOURCES.getHideResourcePackProperty())
                         .addBooleanOption(new BooleanOption("showAllTooltips", false,
                                 Text.translatable("config.compressor.showAllTooltips"),
@@ -45,8 +51,6 @@ public class Compressor implements ModInitializer {
     }
 
     private void registerAdditions() {
-
-        RegistryHandler registryHandler = new RegistryHandler(MODID);
 
         int index = 0;
         for (Field field : CompressorBlocks.class.getDeclaredFields()) {
